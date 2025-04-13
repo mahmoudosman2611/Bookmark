@@ -15,10 +15,14 @@ body {
   --defult-transition: 500ms;
 }
 
+
+
 /* ^####uitilets class */
 .w-fit {
   width: fit-content;
 }
+
+
 
 /* ?>>>>>>>>>>>>>>>End Global styles<<<<<<<<<<<<< */
 
@@ -37,13 +41,15 @@ body {
   position: absolute;
   width: 100%;
   height: 35%;
-  background-color: blue;
+  background-color: #9575CD; 
   bottom: 3px;
   z-index: -1;
   transition: height var(--defult-transition);
 }
+
 .bookmarker h1:hover::before {
   height: 70%;
+  background-color: #7E57C2; 
 }
 
 .bookmarker .form {
@@ -59,61 +65,109 @@ body {
   outline: none;
 }
 
-.form .btn1 {
-  background-color: blue;
+.form .btn1,.form .btn2
+ {
+  background-color: #5E35B1; 
   color: white;
   letter-spacing: 1px;
   font-family: "Righteous", "cursive";
   padding-inline: 50px;
   transition: var(--defult-transition);
+  border: none;
 }
 
-.form .btn1:hover {
-  background-color: rgb(0, 0, 107);
+.form .btn1:hover , .form .btn2:hover{
+  background-color: #4527A0; 
 }
+
+
+
 
 .bookmarker .table .btn-visit {
-  background-color: blue;
+  background-color: #5E35B1; 
   color: white;
-  letter-spacing: 1px;
 }
+
 .bookmarker .table .btn-visit:hover {
-  background-color: rgb(0, 0, 107);
+  background-color: #4527A0; 
 }
+
 .bookmarker .table .btn-visit:active {
   background-color: white;
   color: black;
 }
 
 .bookmarker .table .btn-delete {
-  background-color: #d41a30;
+  background-color: #E53935; 
   color: white;
-  letter-spacing: 1px;
 }
 
 .bookmarker .table .btn-delete:hover {
-  background-color: #d30820;
+  background-color: #C62828; 
 }
 
 .bookmarker .table .btn-update {
-  background-color: rgb(20, 153, 20);
+  background-color: #43A047; 
   color: white;
-  letter-spacing: 1px;
 }
 
 .bookmarker .table .btn-update:hover {
-  background-color: green;
+  background-color: #2E7D32; 
 }
+
+
 
 .table th {
   font-family: "Righteous", "cursive";
-  font-size: 20px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
+
+  font-weight: 500;
 }
 
 .table td {
   font-family: "Righteous", "cursive";
-  font-weight: 600;
-  letter-spacing: 1px;
+  font-weight: 400;
+}
+
+
+#toggleModeBtn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  cursor: pointer;
+  z-index: 1000;
+  transition: color 0.3s ease;
+}
+
+
+body:not(.dark-mode) #toggleModeBtn {
+  color: #9575CD;
+}
+
+
+body.dark-mode #toggleModeBtn {
+  color: #ffffff;
+}
+
+
+
+
+
+
+@media (max-width: 768px) {
+  .table {
+    font-size: 0.8em;
+  }
+  .bookmarker .table .btn-delete {
+    font-size: 10px;
+  }
+
+  .bookmarker .table .btn-visit {
+    font-size: 10px;
+  }
+  .bookmarker .table .btn-update {
+    font-size: 10px;
+  }
 }

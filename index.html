@@ -1,137 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BookMarker</title>
-    <link rel="icon" href="imgs/bookmark.png" />
-    <!-- *========|> Google Fonts -->
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=PT+Sans+Caption:wght@400;700&family=Pacifico&family=Righteous&display=swap"
-      rel="stylesheet"
-    />
-    <!-- *========|> Font awesome library -->
-    <link rel="stylesheet" href="css/all.min.css" />
-    <!-- *========|> Bootstrap -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <!-- *========|> Main stylesheet -->
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
-  <body>
-    <main>
-      <section id="home" class="bookmarker mt-5">
-        <div class="container">
-          <div class="headline">
-            <h1 class="text-center display-4 position-relative w-fit mx-auto">
-              Bookmarker
-            </h1>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Bookmark your favorite websites easily using this simple and responsive bookmark manager. Save, update, and visit links with just a click. Built by Mahmoud Osman.">
+  <meta name="keywords"
+    content="bookmark manager, website saver, link manager, bookmarks, Mahmoud Osman, web development project">
+  <meta name="author" content="Mahmoud Osman">
+
+  <!-- Open Graph tags for social sharing -->
+  <meta property="og:title" content="Bookmark Manager by Mahmoud Osman">
+  <meta property="og:description" content="Easily save and manage your favorite websites. Fast, clean, and responsive.">
+  <meta property="og:url" content="https://mahmoudosman2611.github.io/bookmarker/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://mahmoudosman2611.github.io/bookmarker/images/preview.jpg">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Bookmark Manager by Mahmoud Osman">
+  <meta name="twitter:description" content="Save and manage your favorite websites with ease. Simple and responsive.">
+  <meta name="twitter:image" content="https://mahmoudosman2611.github.io/bookmarker/images/preview.jpg">
+
+  <title>BookMarker</title>
+  <link rel="icon" href="imgs/bookmark.png" />
+  <!-- *========|> Google Fonts -->
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=PT+Sans+Caption:wght@400;700&family=Pacifico&family=Righteous&display=swap"
+    rel="stylesheet" />
+  <!-- *========|> Font awesome library -->
+  <link rel="stylesheet" href="css/all.min.css" />
+  <!-- *========|> Bootstrap -->
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <!-- *========|> Main stylesheet -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <main>
+    <section id="home" class="bookmarker mt-5">
+      <div class="container">
+        <div class="headline">
+          <h1 class="text-center display-4 position-relative w-fit mx-auto">
+            Bookmarker
+          </h1>
+        </div>
+
+        <div class="form">
+          <h2 class="h4 text-center mt-3">
+            <i class="fa-solid fa-bookmark"></i> Bookmark your favorite sites
+            <i class="fa-solid fa-bookmark"></i>
+          </h2>
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label fw-bolder">
+              <i class="fa-solid fa-book-bookmark pe-2"></i>Site Name</label>
+            <input type="text" class="form-control" autocomplete="off" id="nameInput" placeholder="Bookmark Name"
+              oninput="validate(siteNameRegex, nameInput)" />
           </div>
-
-          <div class="form">
-            <h2 class="h4 text-center mt-3">
-              <i class="fa-solid fa-bookmark"></i> Bookmark your favorite sites
-              <i class="fa-solid fa-bookmark"></i>
-            </h2>
-            <div class="mb-3">
-              <label
-                for="exampleFormControlInput1"
-                class="form-label fw-bolder"
-              >
-                <i class="fa-solid fa-book-bookmark pe-2"></i>Site Name</label
-              >
-              <input
-                type="text"
-                class="form-control"
-                autocomplete="off"
-                id="nameInput"
-                placeholder="Bookmark Name"
-                oninput="validate(siteNameRegex, nameInput)"
-              />
-            </div>
-            <div class="mb-3">
-              <label
-                for="exampleFormControlInput1"
-                class="form-label fw-bolder"
-              >
-                <i class="fa-solid fa-link pe-2"></i>Site URL</label
-              >
-              <input
-                type="text"
-                autocomplete="off"
-                class="form-control"
-                id="urlInput"
-                placeholder="Website URL"
-                oninput="validate(siteUrlRegex, urlInput)"
-              />
-            </div>
-            <div class="d-flex justify-content-center mb-3">
-              <button
-                class="btn btn1 text-center"
-                type="button"
-                onclick="addBook()"
-                id="addBtn"
-              >
-                Submit
-              </button>
-              <button
-              class="btn btn1 text-center d-none"
-              type="button"
-              onclick="updateurl() "
-              id="updateBtn"
-            >
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label fw-bolder">
+              <i class="fa-solid fa-link pe-2"></i>Site URL</label>
+            <input type="text" autocomplete="off" class="form-control urlInput" placeholder="Website URL"
+              oninput="validate(siteUrlRegex, urlInput)" />
+          </div>
+          <div class="d-flex justify-content-center mb-3">
+            <button class="btn btn1 text-center" type="button" id="addBtn">
+              Submit
+            </button>
+            <button class="btn btn2 text-center d-none" type="button" id="updateBtn">
               Update URl
             </button>
-            </div>
           </div>
+        </div>
 
-          <input
-            type="search"
-            class="form-control my-4 w-75 mx-auto search"
-            placeholder="Search Bookmark...."
-            oninput="searchProducts()"
-            id="searchInput"
-            autocomplete="off"
-          />
+        <input type="search" class="form-control my-4 w-75 mx-auto search" placeholder="Search Bookmark...."
+          id="searchInput" autocomplete="off" />
+        <div class=" d-flex justify-content-center">
           <table class="table w-100 text-center overflow-hidden rounded-3 mt-5">
             <thead>
               <tr>
                 <th>Index</th>
-                <th>Website Name</th>
+                <th>Name</th>
                 <th>Visit</th>
                 <th>Delete</th>
                 <th>Update</th>
               </tr>
             </thead>
-            <tbody id="bookContainer">
+            <tbody class="bookContainer">
               <!-- <tr>
-                <td class="index"></td>
-                <td class="name"></td>
-                <td>
-                  <button
-                    class="btn btn-visit d-flex justify-content-center align-items-center m-auto gap-1"
-                  >
-                    <i class="fa-regular fa-eye"></i>Visit
-                  </button>
-                </td>
-                <td>
-                  <button
-                    class="btn btn-delete d-flex justify-content-center align-items-center m-auto gap-1"
-                  >
-                  <i class="fa-regular fa-trash-can"></i>Delete
-                  </button>
-                </td>
-              </tr> -->
+                  <td class="index"></td>
+                  <td class="name"></td>
+                  <td>
+                    <button
+                      class="btn btn-visit d-flex justify-content-center align-items-center m-auto gap-1"
+                    >
+                      <i class="fa-regular fa-eye"></i>Visit
+                    </button>
+                  </td>
+                  <td>
+                    <button
+                      class="btn btn-delete d-flex justify-content-center align-items-center m-auto gap-1"
+                    >
+                    <i class="fa-regular fa-trash-can"></i>Delete
+                    </button>
+                  </td>
+                </tr> -->
             </tbody>
           </table>
         </div>
-      </section>
-    </main>
-    <!-- ?========|> Boostrap Js file -->
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <!-- ?========|> Main Js File -->
-    <script src="js/index.js"></script>
-  </body>
+
+      </div>
+    </section>
+  </main>
+  <!-- ?========|> Boostrap Js file -->
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <!-- ?========|> Main Js File -->
+  <script src="js/index.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+
 </html>

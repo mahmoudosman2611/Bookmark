@@ -1,9 +1,12 @@
 // *HTML elements
-var nameInput = document.getElementById("nameInput");
-var urlInput = document.getElementById("urlInput");
-var bookContainer = document.getElementById("bookContainer");
-var searchInput = document.getElementById("searchInput");
-var siteNameRegex = /^[a-zA-Z][a-zA-Z0-9.-]{2,}$/;
+
+var nameInput = document.querySelector(".form-control");
+var urlInput = document.querySelector(".urlInput");
+var bookContainer = document.querySelector(".bookContainer");
+var searchInput = document.querySelector(".search");
+var addBtn = document.querySelector(".btn1");
+var updateBtn = document.querySelector(".btn2");
+var siteNameRegex = /^[A-Z][a-z]{3,8}$/;
 var siteUrlRegex =
   /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)$/;
 
@@ -12,7 +15,7 @@ var siteUrlRegex =
 var bookList = JSON.parse(localStorage.getItem("books")) || [];
 
 // &Functions
-function addBook() {
+addBtn.addEventListener("click", function addBook() {
   if (validate(siteNameRegex, nameInput) && validate(siteUrlRegex, urlInput)) {
     var book = {
       name: nameInput.value,
@@ -21,12 +24,24 @@ function addBook() {
 
     bookList.push(book);
     localStorage.setItem("books", JSON.stringify(bookList));
-    displayAllBook();
     clearInput();
+    displayAllBook();
+    Swal.fire({
+      icon: "success",
+      title: "Success!",
+      text: "Book added successfully.",
+      timer: 2000,
+      showConfirmButton: false,
+    });
   } else {
-    alert("Wronge");
+    Swal.fire({
+      icon: "error",
+      title: "Oops!",
+      text: "Please enter a valid name and URL.",
+      confirmButtonColor: "#d33",
+    });
   }
-}
+});
 
 function displayBook(index) {
   var displayHtml = `
@@ -68,9 +83,9 @@ displayAllBook();
 
 function clearInput() {
   nameInput.value = "";
-  nameInput.classList.remove("is-valid")
+  nameInput.classList.remove("is-valid");
   urlInput.value = "";
-  urlInput.classList.remove("is-valid")
+  urlInput.classList.remove("is-valid");
 }
 
 function deleteBook(index) {
@@ -78,6 +93,13 @@ function deleteBook(index) {
   localStorage.setItem("books", JSON.stringify(bookList));
   bookContainer.innerHTML = "";
   displayAllBook();
+  Swal.fire({
+    icon: "success",
+    title: "Deleted!",
+    text: "The bookmark has been deleted.",
+    timer: 2000,
+    showConfirmButton: false,
+  });
 }
 
 function visitSite(index) {
@@ -95,8 +117,7 @@ function validate(regex, element) {
     return false;
   }
 }
-
-function searchProducts() {
+searchInput.addEventListener("input", function searchProducts() {
   bookContainer.innerHTML = "";
   for (var i = 0; i < bookList.length; i++) {
     if (
@@ -105,7 +126,7 @@ function searchProducts() {
       displayBook(i);
     }
   }
-}
+});
 
 var updatedIndex;
 function getBookInfo(i) {
@@ -116,8 +137,7 @@ function getBookInfo(i) {
   addBtn.classList.add("d-none");
   updateBtn.classList.remove("d-none");
 }
-
-function updateurl() {
+updateBtn.addEventListener("click", function updateurl() {
   if (validate(siteNameRegex, nameInput) && validate(siteUrlRegex, urlInput)) {
     bookList[updatedIndex].name = nameInput.value;
     bookList[updatedIndex].link = urlInput.value;
@@ -127,5 +147,20 @@ function updateurl() {
     clearInput();
     addBtn.classList.remove("d-none");
     updateBtn.classList.add("d-none");
+
+    Swal.fire({
+      icon: "success",
+      title: "Updated!",
+      text: "Bookmark updated successfully.",
+      timer: 2000,
+      showConfirmButton: false,
+    });
+  } else {
+    Swal.fire({
+      icon: "error",
+      title: "Invalid Input!",
+      text: "Please enter a valid site name and URL.",
+      confirmButtonColor: "#d33",
+    });
   }
-}
+});
